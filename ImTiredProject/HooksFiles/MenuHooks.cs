@@ -1,10 +1,8 @@
 ﻿using AppiumTestProject.Utils;
+using Aquality.WinAppDriver.Applications;
 using ImTiredProject.Models;
 using NUnit.Framework;
-using OpenCvSharp.Text;
-using System.Text;
-using TechTalk.SpecFlow;
-using static System.Net.Mime.MediaTypeNames;
+using OpenQA.Selenium;
 
 namespace NUnitDesctop.HooksFiles
 {
@@ -20,7 +18,7 @@ namespace NUnitDesctop.HooksFiles
         [When(@"open '([^']*)' documents")]
         public void WhenOpenDocument(int count)
         {
-            for(int i = 0; i < count; i++) 
+            for (int i = 0; i < count; i++)
             {
                 MainPage.OpenDocument();
             }
@@ -44,7 +42,7 @@ namespace NUnitDesctop.HooksFiles
         {
             var docTexts = MainPage.GetAllDocumentsText();
 
-            foreach(var docText in docTexts)
+            foreach (var docText in docTexts)
             {
                 Assert.That(docText, Is.EqualTo(text));
             }
@@ -58,9 +56,9 @@ namespace NUnitDesctop.HooksFiles
 
             Assert.That(fileNames.Count() > 0, "Проверка, что кол-во имен файлов не равно нулю");
 
-            for(var i = 1; i < fileNames.Count() + 1; i++)
+            for (var i = 1; i < fileNames.Count() + 1; i++)
             {
-                Assert.That(defoultName + $"{i}", Is.EqualTo(fileNames[i-1]), $"Проверяем имя {i}-ого файла");
+                Assert.That(defoultName + $"{i}", Is.EqualTo(fileNames[i - 1]), $"Проверяем имя {i}-ого файла");
             }
         }
 
@@ -70,5 +68,36 @@ namespace NUnitDesctop.HooksFiles
             MainPage.SelectDocTabsByNumber(number);
         }
 
+        [When(@"close curent document")]
+        public void WhenCloseCurentDocument()
+        {
+            AqualityServices.KeyboardActions.SendKeys(Keys.LeftControl + "w");
+        }
+
+        [When(@"close all documents")]
+        public void WhenCloseAllDocuments()
+        {
+            AqualityServices.KeyboardActions.SendKeys(Keys.LeftControl + Keys.LeftShift + "w");
+        }
+
+        [When(@"select dont save in close document notification")]
+        public void WhenSelectDontSaveInCloseDocumentNotification()
+        {
+            MainPage.CloseNotification(CloseNotificationOptions.CloseThisDontSave);
+        }
+
+        [When(@"close all documents and save")]
+        public void WhenCloseAllDocumentsAndSave()
+        {
+            AqualityServices.Application.Quit();
+            MainPage.CloseNotification(CloseNotificationOptions.Save);
+        }
+
+
+        [When(@"click close document")]
+        public void WhenClickCloseDocument()
+        {
+            MainPage.CloseCurrentDocument();
+        }
     }
 }

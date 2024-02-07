@@ -1,5 +1,6 @@
 ﻿using Aquality.WinAppDriver.Applications;
 using ImTiredProject.PageObjects;
+using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 using static System.Net.Mime.MediaTypeNames;
 
@@ -61,7 +62,7 @@ namespace NUnitDesctop.HooksFiles
         [When(@"press ok in confirm button")]
         public void WhenPressOkInConfirmButton()
         {
-            AqualityServices.KeyboardActions.SendKeys("{LEFT} + {ENTER}");
+            AqualityServices.KeyboardActions.SendKeys(Keys.ArrowLeft + Keys.Enter);
         }
 
 

@@ -25,7 +25,14 @@ Scenario: WorkingWithMultipleTabs
 	Then is the document fill in '<anotherText>'
 	When go to document numer '3'
 	Then is the document fill in '<anotherText>'
-
+	When go to document numer '3'
+		And close curent document
+		And select dont save in close document notification
+	Then '2' documents open
+	When click close document
+		And select save in close documents alert
+		And save document
+	Then document is saved
 
 
 
