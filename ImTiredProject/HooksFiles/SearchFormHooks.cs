@@ -1,8 +1,6 @@
 ﻿using Aquality.WinAppDriver.Applications;
 using ImTiredProject.PageObjects;
 using OpenQA.Selenium;
-using TechTalk.SpecFlow;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace NUnitDesctop.HooksFiles
 {

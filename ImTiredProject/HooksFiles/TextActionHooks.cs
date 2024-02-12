@@ -1,6 +1,4 @@
 ﻿using NUnit.Framework;
-using System.Text;
-using TechTalk.SpecFlow;
 
 namespace NUnitDesctop.HooksFiles
 {
@@ -18,7 +16,7 @@ namespace NUnitDesctop.HooksFiles
         {
             MainPage.ClickCut();
         }
-        
+
         [When(@"click on the insert button")]
         public void ClickOnTheInsertButton()
         {
@@ -67,7 +65,7 @@ namespace NUnitDesctop.HooksFiles
         {
             MainPage.ClickStopRecordingButton();
         }
-        
+
         [Then(@"the play button has become active")]
         public void ThePlayButtonHasBecomeActive()
         {

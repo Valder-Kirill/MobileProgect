@@ -1,9 +1,5 @@
-﻿using Aquality.WinAppDriver.Applications;
-using Aquality.WinAppDriver.Elements.Interfaces;
+﻿using Aquality.WinAppDriver.Elements.Interfaces;
 using ImTiredProject.Models;
-using Microsoft.VisualBasic;
-using NUnit.Framework.Interfaces;
-using OpenCvSharp.Internal.Vectors;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
 using System.Collections.ObjectModel;
@@ -14,12 +10,14 @@ namespace ImTiredProject.PageObjects
 {
     public class MainPage : BasePage
     {
+        private string CloseDontSaveLocator = "//*[@AutomationId='7']";
+
         private ITextBox DocumentTextBox => ElementFactory.GetTextBox(By.ClassName("Scintilla"), "Document text box");
         private ILabel Docbar => ElementFactory.GetLabel(By.Name("Tab"), "Find Drop Down");
         private ReadOnlyCollection<AppiumWebElement> DocTabs => Docbar.GetElement().FindElementsByXPath("//*");
         private IButton NewFileButton => ElementFactory.GetButton(By.XPath("//*[@ClassName='ToolbarWindow32']/*[1]"), "Cut button");
         private IButton CloseCurrentFuleButton => ElementFactory.GetButton(By.XPath("//*[@ClassName='ToolbarWindow32']/*[5]"), "Cut button");
-
+        private IButton CloseAllFuleButton => ElementFactory.GetButton(By.XPath("//*[@ClassName='ToolbarWindow32']/*[6]"), "Cut button");
         private IButton CutButton => ElementFactory.GetButton(By.XPath("//*[@ClassName='ToolbarWindow32']/*[8]"), "Cut button");
         private IButton CopyButton => ElementFactory.GetButton(By.XPath("//*[@ClassName='ToolbarWindow32']/*[9]"), "Copy button");
         private IButton PasteButton => ElementFactory.GetButton(By.XPath("//*[@ClassName='ToolbarWindow32']/*[10]"), "Paste button");
@@ -32,6 +30,7 @@ namespace ImTiredProject.PageObjects
         private IButton CloseAllDontSave => ElementFactory.GetButton(By.XPath("//*[@AutomationId='5']"), "Count text box");
         private IButton CloseDontSave => ElementFactory.GetButton(By.XPath("//*[@AutomationId='7']"), "Count text box");
         private IButton SaveButton => ElementFactory.GetButton(By.XPath("//*[@AutomationId='6']"), "Count text box");
+        private IButton CloseButton => ElementFactory.GetButton(By.XPath("//*[@AutomationId='Close']"), "Count text box");
         private IButton FindDropDown => ElementFactory.GetButton(By.Name("Поиск"), "Find Drop Down");
         private IButton FindButton => ElementFactory.GetButton(By.Name("Найти..."), "Find button");
 
@@ -121,7 +120,7 @@ namespace ImTiredProject.PageObjects
 
         public void OpenFindForm()
         {
-            SendKeys(Keys.LeftControl + "f");
+            SendKeys(Keys.Control + "f");
         }
 
         public void OpenDocument()
@@ -136,12 +135,12 @@ namespace ImTiredProject.PageObjects
 
         public void FillInAllDocumentsWithText(string text)
         {
-            for(var i = 1; i < DocTabs.Count(); i++)
+            for (var i = 1; i < DocTabs.Count(); i++)
             {
                 var tab = DocTabs[i];
                 tab.Click();
                 DocumentTextFillIn(text);
-            }     
+            }
         }
 
         public List<string> GetAllDocumentsText()
@@ -158,15 +157,24 @@ namespace ImTiredProject.PageObjects
             return result;
         }
 
+        public bool CloseNotificationIsOpen()
+        {
+            return ElementFactory.FindElements<IButton>(By.XPath(CloseDontSaveLocator), "").Count() > 0;
+        }
+
+        public void CloseApp()
+        {
+            CloseButton.Click();
+        }
+
         public void CloseNotification(string value)
         {
-            switch(value)
+            switch (value)
             {
                 case CloseNotificationOptions.CloseAllDontSave:
                     try
                     {
                         CloseAllDontSave.Click();
-
                     }
                     catch
                     {
@@ -176,10 +184,6 @@ namespace ImTiredProject.PageObjects
 
                 case CloseNotificationOptions.CloseThisDontSave:
                     CloseDontSave.Click();
-                    break;
-
-                case CloseNotificationOptions.Save:
-
                     break;
             }
         }
@@ -210,6 +214,11 @@ namespace ImTiredProject.PageObjects
         public void CloseCurrentDocument()
         {
             CloseCurrentFuleButton.Click();
+        }
+
+        public void CloseAllDocuments()
+        {
+            CloseAllFuleButton.Click();
         }
     }
 }

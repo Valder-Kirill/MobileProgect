@@ -1,13 +1,8 @@
-﻿using AppiumTestProject.Utils;
-using Aquality.WinAppDriver.Elements.Interfaces;
+﻿using Aquality.WinAppDriver.Elements.Interfaces;
 using ImTiredProject.Utils;
 using NUnit.Framework;
 using OpenCvSharp;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Appium;
-using System.Drawing;
-using System.Security.Cryptography.X509Certificates;
-using TechTalk.SpecFlow.Analytics;
 
 namespace ImTiredProject.PageObjects
 {
@@ -42,7 +37,7 @@ namespace ImTiredProject.PageObjects
             Mat outCompare = new Mat();
             double minCompRes;
 
-            var pic = CaptureElementScreenShot(ErrorMessageLabel().GetElement(), "Base", ImagesUtils.GetImageWay("baseSearchMessage"));
+            var pic = ImagesUtils.CaptureElementScreenShot(ErrorMessageLabel().GetElement(), ImagesUtils.GetImageWay("baseSearchMessage"));
             pic.Save(ImagesUtils.GetImageWay("actualSearchMessage"));
 
             var referenceImage = new Mat(ImagesUtils.GetImageWay(variableName));
@@ -54,37 +49,6 @@ namespace ImTiredProject.PageObjects
             Cv2.MinMaxLoc(outCompare, out minCompRes, out _);
 
             Assert.That(minCompRes, Is.GreaterThan(0.8d));
-        }
-
-        /// <summary>
-        /// Captures the element screen shot.
-        /// </summary>
-        /// <param name="element">The element.</param>
-        /// <param name="uniqueName">Name of the unique.</param>
-        /// <returns>returns the screenshot  image </returns>
-        public Image CaptureElementScreenShot(AppiumWebElement element, string uniqueName, string filename)
-        {
-            Bitmap printscreen = new Bitmap(1920, 1080);
-            Graphics graphics = Graphics.FromImage(printscreen as Image);
-            graphics.CopyFromScreen(0, 0, 0, 0, new System.Drawing.Size(1920, 1080));
-
-            printscreen.Save(filename);
-
-            Image img = Bitmap.FromFile(filename);
-            Rectangle rect = new Rectangle();
-
-            if (element != null)
-            {
-                int width = element.Size.Width;
-                int height = element.Size.Height;
-                System.Drawing.Point p = element.Location;
-                rect = new Rectangle(p.X, p.Y, width, height);
-            }
-
-            Bitmap bmpImage = new Bitmap(img);
-            var cropedImag = bmpImage.Clone(rect, bmpImage.PixelFormat);
-
-            return cropedImag;
         }
 
         public void GoToReplacementTab()

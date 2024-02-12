@@ -29,12 +29,10 @@ Scenario: WorkingWithMultipleTabs
 		And close curent document
 		And select dont save in close document notification
 	Then '2' documents open
-	When click close document
-		And select save in close documents alert
-		And save document
-	Then document is saved
-
-
+	When click close all document
+		And select dont save in close document notification
+	Then '1' documents open
+		And is the document fill in ''
 
 	Examples: 
 | text				 | anotherText |

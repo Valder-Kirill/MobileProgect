@@ -1,7 +1,4 @@
-﻿using Aquality.WinAppDriver.Applications;
-using TechTalk.SpecFlow;
-using NUnit;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
 namespace NUnitDesctop.HooksFiles
 {
@@ -11,7 +8,7 @@ namespace NUnitDesctop.HooksFiles
         [Given(@"app is open")]
         public void GivenAppIsOpen()
         {
-            
+
         }
 
         [When(@"fill in the document with '(.*)'")]

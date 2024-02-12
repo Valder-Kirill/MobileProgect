@@ -2,7 +2,6 @@
 using Aquality.WinAppDriver.Applications;
 using ImTiredProject.Models;
 using NUnit.Framework;
-using OpenQA.Selenium;
 
 namespace NUnitDesctop.HooksFiles
 {
@@ -71,19 +70,23 @@ namespace NUnitDesctop.HooksFiles
         [When(@"close curent document")]
         public void WhenCloseCurentDocument()
         {
-            AqualityServices.KeyboardActions.SendKeys(Keys.LeftControl + "w");
+            //AqualityServices.KeyboardActions.SendKeys(Keys.Control + "w");
+            //AqualityServices.KeyboardActions.SendKeys(Keys.Control);
+            MainPage.CloseCurrentDocument();
         }
 
         [When(@"close all documents")]
         public void WhenCloseAllDocuments()
         {
-            AqualityServices.KeyboardActions.SendKeys(Keys.LeftControl + Keys.LeftShift + "w");
+            MainPage.CloseAllDocuments();
+            //AqualityServices.KeyboardActions.SendKeys(Keys.Control + Keys.Shift + "w");
+            //AqualityServices.KeyboardActions.SendKeys(Keys.Control);
         }
 
         [When(@"select dont save in close document notification")]
         public void WhenSelectDontSaveInCloseDocumentNotification()
         {
-            MainPage.CloseNotification(CloseNotificationOptions.CloseThisDontSave);
+            MainPage.CloseNotification(CloseNotificationOptions.CloseAllDontSave);
         }
 
         [When(@"close all documents and save")]
@@ -99,5 +102,12 @@ namespace NUnitDesctop.HooksFiles
         {
             MainPage.CloseCurrentDocument();
         }
+
+        [When(@"click close all document")]
+        public void WhenClickCloseAllDocument()
+        {
+            MainPage.CloseAllDocuments();
+        }
+
     }
 }

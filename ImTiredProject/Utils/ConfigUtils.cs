@@ -15,7 +15,6 @@ namespace AppiumTestProject.Utils
             {
                 if (xmlNode.Attributes.Count > 0)
                 {
-                    //XmlNode attr = xmlNode.Attributes.GetNamedItem(nodeName);
                     foreach (XmlNode childNode in xmlNode.ChildNodes)
                     {
                         if (childNode.Name == variableName)
