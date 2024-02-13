@@ -76,8 +76,8 @@ namespace ImTiredProject.FeatureFiles
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("SearchAndReplaceValidation")]
         [NUnit.Framework.CategoryAttribute("SearchAndReplaceValidation")]
-        [NUnit.Framework.TestCaseAttribute("Aboba abra kadabra", "Humburger", "Не удается найти текст", "", "", null)]
-        public virtual void SearchAndReplaceValidation(string text, string anotherText, string findErrorText, string goodReplaceText, string badReplaceText, string[] exampleTags)
+        [NUnit.Framework.TestCaseAttribute("Aboba abra kadabra", "Humburger", null)]
+        public virtual void SearchAndReplaceValidation(string text, string anotherText, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "SearchAndReplaceValidation"};
@@ -89,9 +89,6 @@ namespace ImTiredProject.FeatureFiles
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("text", text);
             argumentsOfScenario.Add("anotherText", anotherText);
-            argumentsOfScenario.Add("findErrorText", findErrorText);
-            argumentsOfScenario.Add("goodReplaceText", goodReplaceText);
-            argumentsOfScenario.Add("badReplaceText", badReplaceText);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("SearchAndReplaceValidation", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
@@ -114,79 +111,76 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 7
- testRunner.Given("app is open", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-#line 8
  testRunner.When("clear document", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 9
+#line 8
   testRunner.And(string.Format("fill in the document with \'{0}\'", text), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 10
+#line 9
   testRunner.And("open find form", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 11
+#line 10
   testRunner.And(string.Format("paste the text \'{0}\' and click next", anotherText), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 12
+#line 11
  testRunner.Then("the message with text should appear - \'failSearchMessage\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 13
+#line 12
  testRunner.When(string.Format("paste the text \'{0}\' and click next", text), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 14
+#line 13
   testRunner.Then("the message with text should appear - \'goodSearchMessage\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 15
+#line 14
  testRunner.When("go to replacement tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 16
+#line 15
   testRunner.And(string.Format("fill the search field with text \'{0}\'", text), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 17
+#line 16
   testRunner.And(string.Format("fill the replace field with text \'{0}\'", anotherText), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 18
+#line 17
   testRunner.And("click replace all button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 19
+#line 18
  testRunner.Then("the message with text should appear - \'goodReplaceMessage\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 20
+#line 19
  testRunner.When("close find form", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 21
+#line 20
  testRunner.Then(string.Format("is the document fill in \'{0}\'", anotherText), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 22
+#line 21
  testRunner.When("press the back button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 23
+#line 22
  testRunner.Then(string.Format("is the document fill in \'{0}\'", text), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 24
+#line 23
  testRunner.When("open find form", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 25
+#line 24
   testRunner.And("go to replacement tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 26
+#line 25
   testRunner.And("activate Match case checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 27
+#line 26
   testRunner.And(string.Format("fill the search field with text \'{0}\', but without a capital letter at the beginn" +
                             "ing", text), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 28
+#line 27
   testRunner.And(string.Format("fill the replace field with text \'{0}\'", anotherText), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 29
+#line 28
   testRunner.And("click replace all button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 30
- testRunner.Then("the message with text should appear - \'badReplaceMessage\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 29
+ testRunner.Then("the message with text should appear - \'failReplaceMessage\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 31
+#line 30
  testRunner.When("deactivate Match case checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
             }

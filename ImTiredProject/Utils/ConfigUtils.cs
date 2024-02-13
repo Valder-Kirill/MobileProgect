@@ -4,12 +4,13 @@ namespace AppiumTestProject.Utils
 {
     public static class ConfigUtils
     {
-        private static string rezult;
         public static string GetAndroidConfig(string variableName)
         {
-            XmlDocument xmlDocument = new XmlDocument();
+            var rezult = string.Empty;
+
+            var xmlDocument = new XmlDocument();
             xmlDocument.Load(@"../../../Resources/testVariables.xml");
-            XmlElement xmlElement = xmlDocument.DocumentElement;
+            var xmlElement = xmlDocument.DocumentElement;
 
             foreach (XmlNode xmlNode in xmlElement)
             {

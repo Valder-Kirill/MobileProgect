@@ -4,7 +4,6 @@ Checking the correctness of text search and replacement
 
 @SearchAndReplaceValidation
 Scenario: SearchAndReplaceValidation
-	Given app is open
 	When clear document
 		And fill in the document with '<text>'
 		And open find form
@@ -27,9 +26,9 @@ Scenario: SearchAndReplaceValidation
 		And fill the search field with text '<text>', but without a capital letter at the beginning
 		And fill the replace field with text '<anotherText>'
 		And click replace all button
-	Then the message with text should appear - 'badReplaceMessage'
+	Then the message with text should appear - 'failReplaceMessage'
 	When deactivate Match case checkbox
 		
 Examples: 
-| text               | anotherText | findErrorText                 | goodReplaceText | badReplaceText |
-| Aboba abra kadabra | Humburger   | Не удается найти текст |                 |                |
+| text               | anotherText |
+| Aboba abra kadabra | Humburger   |

@@ -1,42 +1,34 @@
 ﻿using Aquality.WinAppDriver.Elements.Interfaces;
-using ImTiredProject.Models;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
 using System.Collections.ObjectModel;
-//using System.Windows.Forms;
-
 
 namespace ImTiredProject.PageObjects
 {
     public class MainPage : BasePage
     {
-        private string CloseDontSaveLocator = "//*[@AutomationId='7']";
+        private readonly string CloseDontSaveLocator = "//*[@AutomationId='7']";
+        private readonly string ToolbarPath = "//*[@ClassName='ToolbarWindow32']";
 
         private ITextBox DocumentTextBox => ElementFactory.GetTextBox(By.ClassName("Scintilla"), "Document text box");
-        private ILabel Docbar => ElementFactory.GetLabel(By.Name("Tab"), "Find Drop Down");
+        private ILabel Docbar => ElementFactory.GetLabel(By.Name("Tab"), "Docbar");
         private ReadOnlyCollection<AppiumWebElement> DocTabs => Docbar.GetElement().FindElementsByXPath("//*");
-        private IButton NewFileButton => ElementFactory.GetButton(By.XPath("//*[@ClassName='ToolbarWindow32']/*[1]"), "Cut button");
-        private IButton CloseCurrentFuleButton => ElementFactory.GetButton(By.XPath("//*[@ClassName='ToolbarWindow32']/*[5]"), "Cut button");
-        private IButton CloseAllFuleButton => ElementFactory.GetButton(By.XPath("//*[@ClassName='ToolbarWindow32']/*[6]"), "Cut button");
-        private IButton CutButton => ElementFactory.GetButton(By.XPath("//*[@ClassName='ToolbarWindow32']/*[8]"), "Cut button");
-        private IButton CopyButton => ElementFactory.GetButton(By.XPath("//*[@ClassName='ToolbarWindow32']/*[9]"), "Copy button");
-        private IButton PasteButton => ElementFactory.GetButton(By.XPath("//*[@ClassName='ToolbarWindow32']/*[10]"), "Paste button");
-        private IButton BackButton => ElementFactory.GetButton(By.XPath("//*[@ClassName='ToolbarWindow32']/*[11]"), "Back button");
-        private IButton ForwardButton => ElementFactory.GetButton(By.XPath("//*[@ClassName='ToolbarWindow32']/*[12]"), "Forward button");
-        private IButton RecordButton => ElementFactory.GetButton(By.XPath("//*[@ClassName='ToolbarWindow32']/*[28]"), "Record button");
-        private IButton StopRecordingButton => ElementFactory.GetButton(By.XPath("//*[@ClassName='ToolbarWindow32']/*[29]"), "Stop recording button");
-        private IButton PlayButton => ElementFactory.GetButton(By.XPath("//*[@ClassName='ToolbarWindow32']/*[30]"), "Play button");
-        private IButton MultipleRunButton => ElementFactory.GetButton(By.XPath("//*[@ClassName='ToolbarWindow32']/*[31]"), "Multiple run button");
-        private IButton CloseAllDontSave => ElementFactory.GetButton(By.XPath("//*[@AutomationId='5']"), "Count text box");
-        private IButton CloseDontSave => ElementFactory.GetButton(By.XPath("//*[@AutomationId='7']"), "Count text box");
-        private IButton SaveButton => ElementFactory.GetButton(By.XPath("//*[@AutomationId='6']"), "Count text box");
+        private IButton NewFileButton => ElementFactory.GetButton(By.XPath($"{ToolbarPath}/*[1]"), "New file button");
+        private IButton CloseCurrentFileButton => ElementFactory.GetButton(By.XPath($"{ToolbarPath}/*[5]"), "Close current file button");
+        private IButton CloseAllFilesButton => ElementFactory.GetButton(By.XPath($"{ToolbarPath}/*[6]"), "Close all files button");
+        private IButton CutButton => ElementFactory.GetButton(By.XPath($"{ToolbarPath}/*[8]"), "Cut button");
+        private IButton CopyButton => ElementFactory.GetButton(By.XPath($"{ToolbarPath}/*[9]"), "Copy button");
+        private IButton PasteButton => ElementFactory.GetButton(By.XPath($"{ToolbarPath}/*[10]"), "Paste button");
+        private IButton BackButton => ElementFactory.GetButton(By.XPath($"{ToolbarPath}/*[11]"), "Back button");
+        private IButton ForwardButton => ElementFactory.GetButton(By.XPath($"{ToolbarPath}/*[12]"), "Forward button");
+        private IButton StartRecordButton => ElementFactory.GetButton(By.XPath($"{ToolbarPath}/*[28]"), "Start record button");
+        private IButton StopRecordingButton => ElementFactory.GetButton(By.XPath($"{ToolbarPath}/*[29]"), "Stop recording button");
+        private IButton PlayRecordButton => ElementFactory.GetButton(By.XPath($"{ToolbarPath}/*[30]"), "Play record button");
+        private IButton MultipleRunButton => ElementFactory.GetButton(By.XPath($"{ToolbarPath}/*[31]"), "Multiple run button");
         private IButton CloseButton => ElementFactory.GetButton(By.XPath("//*[@AutomationId='Close']"), "Count text box");
-        private IButton FindDropDown => ElementFactory.GetButton(By.Name("Поиск"), "Find Drop Down");
-        private IButton FindButton => ElementFactory.GetButton(By.Name("Найти..."), "Find button");
 
         public MainPage() : base(By.ClassName("Scintilla"), "Main page")
-        {
-        }
+        { }
 
         public void DocumentTextFillIn(string text)
         {
@@ -83,14 +75,9 @@ namespace ImTiredProject.PageObjects
             ForwardButton.Click();
         }
 
-        public void SelectFirstWord()
-        {
-            var text = DocumentTextBox.Text;
-        }
-
         public void ClickOnRecord()
         {
-            RecordButton.Click();
+            StartRecordButton.Click();
         }
 
         public bool IsStopRecordingButtonEnabled()
@@ -105,7 +92,7 @@ namespace ImTiredProject.PageObjects
 
         public bool IsPlayButtonEnabled()
         {
-            return PlayButton.GetElement().Enabled;
+            return PlayRecordButton.GetElement().Enabled;
         }
 
         public void ClickMultipleRunButton()
@@ -115,7 +102,7 @@ namespace ImTiredProject.PageObjects
 
         public void ClickPlayButton()
         {
-            PlayButton.Click();
+            PlayRecordButton.Click();
         }
 
         public void OpenFindForm()
@@ -167,27 +154,6 @@ namespace ImTiredProject.PageObjects
             CloseButton.Click();
         }
 
-        public void CloseNotification(string value)
-        {
-            switch (value)
-            {
-                case CloseNotificationOptions.CloseAllDontSave:
-                    try
-                    {
-                        CloseAllDontSave.Click();
-                    }
-                    catch
-                    {
-                        CloseDontSave.Click();
-                    }
-                    break;
-
-                case CloseNotificationOptions.CloseThisDontSave:
-                    CloseDontSave.Click();
-                    break;
-            }
-        }
-
         public List<string> GetAllFileNames()
         {
             var result = new List<string>();
@@ -206,19 +172,14 @@ namespace ImTiredProject.PageObjects
             DocTabs[number].Click();
         }
 
-        public void ClickSaveButton()
-        {
-            SaveButton.Click();
-        }
-
         public void CloseCurrentDocument()
         {
-            CloseCurrentFuleButton.Click();
+            CloseCurrentFileButton.Click();
         }
 
         public void CloseAllDocuments()
         {
-            CloseAllFuleButton.Click();
+            CloseAllFilesButton.Click();
         }
     }
 }

@@ -17,7 +17,7 @@ namespace NUnitDesctop.HooksFiles
         [Then(@"the message with text should appear - '(.*)'")]
         public void TheErrorWithTextShouldAppear(string messageText)
         {
-            SearchForm.ErrorTextIsExist(messageText);
+            SearchForm.MessageWithTextIsExist(messageText);
         }
 
         [When(@"go to replacement tab")]

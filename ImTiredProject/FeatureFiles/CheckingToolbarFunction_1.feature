@@ -2,7 +2,6 @@
 
 @FillInTheDocument
 Scenario: FillInTheDocument
-	Given app is open
 	When clear document
 		And fill in the document with '<text>'
 	Then is the document fill in '<text>'

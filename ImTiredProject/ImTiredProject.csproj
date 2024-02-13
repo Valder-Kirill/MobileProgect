@@ -20,7 +20,6 @@
 
   <ItemGroup>
     <Folder Include="Resources\Applications\Notepad++\plugins\disabled\" />
-    <Folder Include="Support\" />
   </ItemGroup>
 
   <ItemGroup>

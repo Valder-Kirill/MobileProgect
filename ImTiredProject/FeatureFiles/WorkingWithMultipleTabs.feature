@@ -4,9 +4,8 @@ Working with multiple tabs
 
 @WorkingWithMultipleTabs
 Scenario: WorkingWithMultipleTabs
-	Given app is open
 	When open '2' documents
-	Then '3' documents open
+	Then '3' documents are open
 	When fill in all documents with text '<text>'
 	Then all documents are filled with '<text>'
 		And all documents have default names
@@ -28,10 +27,10 @@ Scenario: WorkingWithMultipleTabs
 	When go to document numer '3'
 		And close curent document
 		And select dont save in close document notification
-	Then '2' documents open
+	Then '2' documents are open
 	When click close all document
 		And select dont save in close document notification
-	Then '1' documents open
+	Then '1' documents are open
 		And is the document fill in ''
 
 	Examples: 

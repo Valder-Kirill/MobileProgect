@@ -5,13 +5,12 @@ namespace ImTiredProject.PageObjects
 {
     public class MultipleLaunchPage : BasePage
     {
-        public MultipleLaunchPage() : base(By.Name("Многократный запуск ..."), "Main page")
-        {
-        }
-
         private ITextBox CountTextBox => ElementFactory.GetTextBox(By.XPath("//*[@AutomationId='8003']"), "Count text box");
         private IButton StartButton => ElementFactory.GetButton(By.Name("Запуск"), "Start Button");
         private IButton CloseButton => ElementFactory.GetButton(By.Name("Закрыть"), "Close Button");
+
+        public MultipleLaunchPage() : base(By.Name("Многократный запуск ..."), "Main page")
+        {}
 
         public void DocumentTextFillIn(string text)
         {

@@ -19,8 +19,7 @@ namespace ImTiredProject.PageObjects
         private IButton MatchCaseCheckBox => ElementFactory.GetButton(By.XPath($"//*[@AutomationId='1724']"), Text);
 
         public SearchForm() : base(By.XPath("//*[@AutomationId='1001']"), "Search text box")
-        {
-        }
+        {}
 
         public void FillInSearchTextBox(string text)
         {
@@ -32,11 +31,9 @@ namespace ImTiredProject.PageObjects
             SearchNextButton.Click();
         }
 
-        public void ErrorTextIsExist(string variableName)
+        public void MessageWithTextIsExist(string variableName)
         {
-            Mat outCompare = new Mat();
-            double minCompRes;
-
+            var outCompare = new Mat();
             var pic = ImagesUtils.CaptureElementScreenShot(ErrorMessageLabel().GetElement(), ImagesUtils.GetImageWay("baseSearchMessage"));
             pic.Save(ImagesUtils.GetImageWay("actualSearchMessage"));
 
@@ -46,7 +43,7 @@ namespace ImTiredProject.PageObjects
             actualImage.ConvertTo(actualImage, MatType.CV_32FC1);
 
             Cv2.MatchTemplate(referenceImage, actualImage, outCompare, TemplateMatchModes.CCoeffNormed);
-            Cv2.MinMaxLoc(outCompare, out minCompRes, out _);
+            Cv2.MinMaxLoc(outCompare, out double minCompRes, out _);
 
             Assert.That(minCompRes, Is.GreaterThan(0.8d));
         }

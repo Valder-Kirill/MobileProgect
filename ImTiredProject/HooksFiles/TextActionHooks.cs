@@ -11,22 +11,17 @@ namespace NUnitDesctop.HooksFiles
             MainPage.SelectAllText();
         }
 
-        [When(@"press scissors")]
-        public void PressScissors()
+        [When(@"fill in the document with '(.*)'")]
+        public void WhenFillInTheDocumentWith(string text)
         {
-            MainPage.ClickCut();
+            MainPage.DocumentTextFillIn(text);
         }
 
-        [When(@"click on the insert button")]
-        public void ClickOnTheInsertButton()
+        [Then(@"is the document fill in '(.*)'")]
+        public void ThenIsTheDocumentFillIn(string expText)
         {
-            MainPage.ClickPaste();
-        }
-
-        [When(@"press the back button")]
-        public void PressTheBackButton()
-        {
-            MainPage.ClickBackButton();
+            string curText = MainPage.GetDocumentText();
+            Assert.That(expText, Is.EqualTo(curText));
         }
 
         [When(@"press the forward button")]

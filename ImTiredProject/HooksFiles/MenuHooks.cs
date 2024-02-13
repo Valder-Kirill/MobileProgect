@@ -14,6 +14,24 @@ namespace NUnitDesctop.HooksFiles
             MainPage.OpenFindForm();
         }
 
+        [When(@"press scissors")]
+        public void PressScissors()
+        {
+            MainPage.ClickCut();
+        }
+
+        [When(@"click on the insert button")]
+        public void ClickOnTheInsertButton()
+        {
+            MainPage.ClickPaste();
+        }
+
+        [When(@"press the back button")]
+        public void PressTheBackButton()
+        {
+            MainPage.ClickBackButton();
+        }
+
         [When(@"open '([^']*)' documents")]
         public void WhenOpenDocument(int count)
         {
@@ -23,7 +41,7 @@ namespace NUnitDesctop.HooksFiles
             }
         }
 
-        [Then(@"'([^']*)' documents open")]
+        [Then(@"'([^']*)' documents are open")]
         public void ThenDocumentsOpen(int count)
         {
             var actualCount = MainPage.GetDocumentCount();
@@ -53,9 +71,9 @@ namespace NUnitDesctop.HooksFiles
             var fileNames = MainPage.GetAllFileNames();
             var defoultName = ConfigUtils.GetAndroidConfig(ConfigNodes.DefaultDocName);
 
-            Assert.That(fileNames.Count() > 0, "Проверка, что кол-во имен файлов не равно нулю");
+            Assert.That(fileNames.Count > 0, "Проверка, что кол-во имен файлов не равно нулю");
 
-            for (var i = 1; i < fileNames.Count() + 1; i++)
+            for (var i = 1; i < fileNames.Count + 1; i++)
             {
                 Assert.That(defoultName + $"{i}", Is.EqualTo(fileNames[i - 1]), $"Проверяем имя {i}-ого файла");
             }
@@ -70,8 +88,6 @@ namespace NUnitDesctop.HooksFiles
         [When(@"close curent document")]
         public void WhenCloseCurentDocument()
         {
-            //AqualityServices.KeyboardActions.SendKeys(Keys.Control + "w");
-            //AqualityServices.KeyboardActions.SendKeys(Keys.Control);
             MainPage.CloseCurrentDocument();
         }
 
@@ -79,21 +95,19 @@ namespace NUnitDesctop.HooksFiles
         public void WhenCloseAllDocuments()
         {
             MainPage.CloseAllDocuments();
-            //AqualityServices.KeyboardActions.SendKeys(Keys.Control + Keys.Shift + "w");
-            //AqualityServices.KeyboardActions.SendKeys(Keys.Control);
         }
 
         [When(@"select dont save in close document notification")]
         public void WhenSelectDontSaveInCloseDocumentNotification()
         {
-            MainPage.CloseNotification(CloseNotificationOptions.CloseAllDontSave);
+            ConfirmAlertForm.CloseNotification(CloseNotificationOptions.CloseAllDontSave);
         }
 
         [When(@"close all documents and save")]
         public void WhenCloseAllDocumentsAndSave()
         {
             AqualityServices.Application.Quit();
-            MainPage.CloseNotification(CloseNotificationOptions.Save);
+            ConfirmAlertForm.CloseNotification(CloseNotificationOptions.Save);
         }
 
 
@@ -108,6 +122,5 @@ namespace NUnitDesctop.HooksFiles
         {
             MainPage.CloseAllDocuments();
         }
-
     }
 }
