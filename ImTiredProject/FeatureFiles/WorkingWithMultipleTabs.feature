@@ -26,10 +26,10 @@ Scenario: WorkingWithMultipleTabs
 	Then is the document fill in '<anotherText>'
 	When go to document numer '3'
 		And close curent document
-		And select dont save in close document notification
+		And select dont save in current close document notification
 	Then '2' documents are open
 	When click close all document
-		And select dont save in close document notification
+		And select dont save in all close document notification
 	Then '1' documents are open
 		And is the document fill in ''
 

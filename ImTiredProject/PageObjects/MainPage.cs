@@ -25,7 +25,7 @@ namespace ImTiredProject.PageObjects
         private IButton StopRecordingButton => ElementFactory.GetButton(By.XPath($"{ToolbarPath}/*[29]"), "Stop recording button");
         private IButton PlayRecordButton => ElementFactory.GetButton(By.XPath($"{ToolbarPath}/*[30]"), "Play record button");
         private IButton MultipleRunButton => ElementFactory.GetButton(By.XPath($"{ToolbarPath}/*[31]"), "Multiple run button");
-        private IButton CloseButton => ElementFactory.GetButton(By.XPath("//*[@AutomationId='Close']"), "Count text box");
+        private IButton CloseButton => ElementFactory.GetButton(By.XPath("//*[@AutomationId='Close']"), "Close button");
 
         public MainPage() : base(By.ClassName("Scintilla"), "Main page")
         { }

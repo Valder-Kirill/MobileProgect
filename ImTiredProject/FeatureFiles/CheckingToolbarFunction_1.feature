@@ -1,5 +1,7 @@
 ﻿Feature: FillInTheDocument
 
+checking the filling of documents
+
 @FillInTheDocument
 Scenario: FillInTheDocument
 	When clear document

@@ -22,19 +22,23 @@ namespace ImTiredProject.PageObjects
         {
             switch (value)
             {
-                case CloseNotificationOptions.CloseAllDontSave:
-                    try
+                case CloseNotificationOptions.DontSaveСurrent:
+                    DontSave.Click();
+                    break;
+
+                case CloseNotificationOptions.DontSaveAll:
+                    DontSaveAll.Click();
+                    break;
+
+                case CloseNotificationOptions.CloseDontSave:
+                    if (new MainPage().GetAllFileNames().Count > 1)
                     {
                         DontSaveAll.Click();
                     }
-                    catch
+                    else
                     {
                         DontSave.Click();
-                    }
-                    break;
-
-                case CloseNotificationOptions.CloseThisDontSave:
-                    DontSave.Click();
+                    } 
                     break;
             }
         }

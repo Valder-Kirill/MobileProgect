@@ -177,7 +177,7 @@ this.ScenarioInitialize(scenarioInfo);
   testRunner.And("close curent document", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 29
-  testRunner.And("select dont save in close document notification", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("select dont save in current close document notification", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 30
  testRunner.Then("\'2\' documents are open", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -186,7 +186,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("click close all document", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 32
-  testRunner.And("select dont save in close document notification", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("select dont save in all close document notification", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 33
  testRunner.Then("\'1\' documents are open", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");

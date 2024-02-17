@@ -10,13 +10,13 @@ namespace ImTiredProject.PageObjects
     {
         private ITextBox SearchTextBox => ElementFactory.GetTextBox(Locator, Text);
         private IButton SearchNextButton => ElementFactory.GetButton(By.XPath("//*[@AutomationId='1']"), "Search next");
-        private ILabel ErrorMessageLabel() => ElementFactory.GetLabel(By.XPath($"//*[@ClassName='msctls_statusbar32']"), Text);
-        private IButton ReplacementTab => ElementFactory.GetButton(By.XPath($"//*[@Name='Замена']"), Text);
-        private ITextBox ReplaceTextBox => ElementFactory.GetTextBox(By.XPath($"//*[@Name='Заменить на:'][2]"), Text);
-        private IButton ReplaceAllButton => ElementFactory.GetButton(By.XPath($"//*[@Name='Заменить']"), Text);
-        private IButton ReplaceInAllDocumentsButton => ElementFactory.GetButton(By.XPath($"//*[contains(@Name,'Заменить все во Всех')]"), Text);
-        private IButton CloseButton => ElementFactory.GetButton(By.XPath($"//*[@Name='Закрыть']"), Text);
-        private IButton MatchCaseCheckBox => ElementFactory.GetButton(By.XPath($"//*[@AutomationId='1724']"), Text);
+        private ILabel ErrorMessageLabel() => ElementFactory.GetLabel(By.XPath($"//*[@ClassName='msctls_statusbar32']"), "Error message");
+        private IButton ReplacementTab => ElementFactory.GetButton(By.XPath($"//*[@Name='Замена']"), "Replacement tab button");
+        private ITextBox ReplaceTextBox => ElementFactory.GetTextBox(By.XPath($"//*[@Name='Заменить на:'][2]"), "Replace text");
+        private IButton ReplaceAllButton => ElementFactory.GetButton(By.XPath($"//*[@Name='Заменить']"), "Replace all button");
+        private IButton ReplaceInAllDocumentsButton => ElementFactory.GetButton(By.XPath($"//*[contains(@Name,'Заменить все во Всех')]"), "Replace in all documents button");
+        private IButton CloseButton => ElementFactory.GetButton(By.XPath($"//*[@Name='Закрыть']"), "Close button");
+        private IButton MatchCaseCheckBox => ElementFactory.GetButton(By.XPath($"//*[@AutomationId='1724']"), "Match case check box");
 
         public SearchForm() : base(By.XPath("//*[@AutomationId='1001']"), "Search text box")
         {}

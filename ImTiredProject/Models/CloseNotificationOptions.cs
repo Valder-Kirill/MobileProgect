@@ -3,7 +3,8 @@
     public static class CloseNotificationOptions
     {
         public const string Save = "Save";
-        public const string CloseAllDontSave = "CloseAllDontSave";
-        public const string CloseThisDontSave = "CloseThisDontSave";
+        public const string DontSaveСurrent = "DontSaveСurrent";
+        public const string DontSaveAll = "DontSaveAll";
+        public const string CloseDontSave = "CloseDontSave";
     }
 }

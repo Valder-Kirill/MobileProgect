@@ -1,4 +1,5 @@
 ﻿using AppiumTestProject.Utils;
+using Aquality.WinAppDriver.Applications;
 using OpenQA.Selenium.Appium;
 using System.Drawing;
 
@@ -11,16 +12,13 @@ namespace ImTiredProject.Utils
             return Directory.GetCurrentDirectory() + ConfigUtils.GetAndroidConfig(variableName);
         }
 
-        /// <summary>
-        /// Captures the element screen shot.
-        /// </summary>
-        /// <param name="element">The element.</param>
-        /// <returns>returns the screenshot  image </returns>
         public static Image CaptureElementScreenShot(AppiumWebElement element, string filename)
         {
-            var printscreen = new Bitmap(1920, 1080);
+            var windowWidth = AqualityServices.Application.Driver.Manage().Window.Size.Width;
+            var windowHeight = AqualityServices.Application.Driver.Manage().Window.Size.Height;
+            var printscreen = new Bitmap(windowWidth, windowHeight);
             var graphics = Graphics.FromImage(printscreen);
-            graphics.CopyFromScreen(0, 0, 0, 0, new Size(1920, 1080));
+            graphics.CopyFromScreen(0, 0, 0, 0, new Size(windowWidth, windowHeight));
 
             printscreen.Save(filename);
 
@@ -29,14 +27,16 @@ namespace ImTiredProject.Utils
 
             if (element != null)
             {
-                int width = element.Size.Width;
-                int height = element.Size.Height;
-                var p = element.Location;
-                rect = new Rectangle(p.X, p.Y, width, height);
+                var width = element.Size.Width;
+                var height = element.Size.Height;
+                var point = element.Location;
+                rect = new Rectangle(point.X, point.Y, width, height);
             }
 
             var bmpImage = new Bitmap(img);
             var cropedImag = bmpImage.Clone(rect, bmpImage.PixelFormat);
+
+            printscreen.Dispose();
 
             return cropedImag;
         }

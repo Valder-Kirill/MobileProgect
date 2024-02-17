@@ -4,9 +4,9 @@ namespace NUnitDesctop.HooksFiles
 {
     public class BaseHooks
     {
-        protected MainPage MainPage => new MainPage();
-        protected MultipleLaunchPage MultipleLaunchPage => new MultipleLaunchPage();
-        protected SearchForm SearchForm => new SearchForm();
-        protected SaveAlertForm ConfirmAlertForm => new SaveAlertForm();
+        protected static MainPage MainPage => new();
+        protected static MultipleLaunchPage MultipleLaunchPage => new();
+        protected static SearchForm SearchForm => new();
+        protected static SaveAlertForm ConfirmAlertForm => new();
     }
 }

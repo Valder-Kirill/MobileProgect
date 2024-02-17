@@ -12,7 +12,7 @@ namespace NUnitDesctop.HooksFiles
             MainPage.CloseAllDocuments();
             if (MainPage.CloseNotificationIsOpen())
             {
-                ConfirmAlertForm.CloseNotification(CloseNotificationOptions.CloseAllDontSave);
+                ConfirmAlertForm.CloseNotification(CloseNotificationOptions.CloseDontSave);
             }
             AqualityServices.Application.Quit();
         }

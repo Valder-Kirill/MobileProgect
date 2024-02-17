@@ -1,4 +1,5 @@
 ﻿using Aquality.WinAppDriver.Applications;
+using ImTiredProject.Utils;
 
 namespace NUnitDesctop.HooksFiles
 {
@@ -10,6 +11,8 @@ namespace NUnitDesctop.HooksFiles
         {
             AqualityServices.WinAppDriverLauncher.StartWinAppDriverIfRequired();
             AqualityServices.Application.Launch();
+            ActionUtils.MaximazeWindow();
+            ActionUtils.ChangeLenguage();
         }
     }
 }

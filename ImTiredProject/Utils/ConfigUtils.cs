@@ -12,9 +12,9 @@ namespace AppiumTestProject.Utils
             xmlDocument.Load(@"../../../Resources/testVariables.xml");
             var xmlElement = xmlDocument.DocumentElement;
 
-            foreach (XmlNode xmlNode in xmlElement)
+            foreach (XmlNode xmlNode in xmlElement!)
             {
-                if (xmlNode.Attributes.Count > 0)
+                if (xmlNode.Attributes!.Count > 0)
                 {
                     foreach (XmlNode childNode in xmlNode.ChildNodes)
                     {

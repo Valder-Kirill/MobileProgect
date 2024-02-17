@@ -97,10 +97,16 @@ namespace NUnitDesctop.HooksFiles
             MainPage.CloseAllDocuments();
         }
 
-        [When(@"select dont save in close document notification")]
-        public void WhenSelectDontSaveInCloseDocumentNotification()
+        [When(@"select dont save in current close document notification")]
+        public void WhenSelectDontSaveInCurrentCloseDocumentNotification()
         {
-            ConfirmAlertForm.CloseNotification(CloseNotificationOptions.CloseAllDontSave);
+            ConfirmAlertForm.CloseNotification(CloseNotificationOptions.DontSaveСurrent);
+        }
+
+        [When(@"select dont save in all close document notification")]
+        public void WhenSelectDontSaveInAllCloseDocumentNotification()
+        {
+            ConfirmAlertForm.CloseNotification(CloseNotificationOptions.DontSaveAll);
         }
 
         [When(@"close all documents and save")]
@@ -109,7 +115,6 @@ namespace NUnitDesctop.HooksFiles
             AqualityServices.Application.Quit();
             ConfirmAlertForm.CloseNotification(CloseNotificationOptions.Save);
         }
-
 
         [When(@"click close document")]
         public void WhenClickCloseDocument()

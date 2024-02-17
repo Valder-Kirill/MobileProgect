@@ -38,7 +38,6 @@ namespace NUnitDesctop.HooksFiles
             SearchForm.FillTheSearchFieldWithText(text.ToLower());
         }
 
-
         [When(@"fill the replace field with text '(.*)'")]
         public void FillTheReplaceFieldWithText(string text)
         {
@@ -62,7 +61,6 @@ namespace NUnitDesctop.HooksFiles
         {
             AqualityServices.KeyboardActions.SendKeys(Keys.ArrowLeft + Keys.Enter);
         }
-
 
         [When(@"deactivate Match case checkbox")]
         [When(@"activate Match case checkbox")]
