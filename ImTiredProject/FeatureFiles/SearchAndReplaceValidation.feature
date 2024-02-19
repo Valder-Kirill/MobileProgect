@@ -4,8 +4,7 @@ Checking the correctness of text search and replacement
 
 @SearchAndReplaceValidation
 Scenario: SearchAndReplaceValidation
-	When clear document
-		And fill in the document with '<text>'
+	When fill in the document with '<text>'
 		And open find form
 		And paste the text '<anotherText>' and click next
 	Then the message with text should appear - 'failSearchMessage'

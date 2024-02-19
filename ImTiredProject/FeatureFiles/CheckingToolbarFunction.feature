@@ -4,8 +4,7 @@ checking the filling of documents
 
 @FillInTheDocument
 Scenario: FillInTheDocument
-	When clear document
-		And fill in the document with '<text>'
+	When fill in the document with '<text>'
 	Then is the document fill in '<text>'
 	When select all the text
 		And press scissors
