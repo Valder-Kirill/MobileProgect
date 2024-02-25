@@ -2,6 +2,7 @@
 using Aquality.WinAppDriver.Applications;
 using ImTiredProject.Models;
 using NUnit.Framework;
+using TechTalk.SpecFlow;
 
 namespace NUnitDesctop.HooksFiles
 {

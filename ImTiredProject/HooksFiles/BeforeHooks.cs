@@ -1,5 +1,6 @@
 ﻿using Aquality.WinAppDriver.Applications;
 using ImTiredProject.Utils;
+using TechTalk.SpecFlow;
 
 namespace NUnitDesctop.HooksFiles
 {
@@ -12,7 +13,7 @@ namespace NUnitDesctop.HooksFiles
             AqualityServices.WinAppDriverLauncher.StartWinAppDriverIfRequired();
             AqualityServices.Application.Launch();
             ActionUtils.MaximazeWindow();
-            ActionUtils.ChangeLenguage();
+            MainPage.ChangeLanguage();
         }
     }
 }

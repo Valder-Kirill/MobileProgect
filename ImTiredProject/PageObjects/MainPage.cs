@@ -1,6 +1,8 @@
 ﻿using Aquality.WinAppDriver.Elements.Interfaces;
+using ImTiredProject.Utils;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
+using OpenQA.Selenium.Interactions;
 using System.Collections.ObjectModel;
 
 namespace ImTiredProject.PageObjects
@@ -29,6 +31,16 @@ namespace ImTiredProject.PageObjects
 
         public MainPage() : base(By.ClassName("Scintilla"), "Main page")
         { }
+
+        public void ChangeLanguage()
+        {
+            var testText = "q";
+            DocumentTextFillIn(testText);
+            var realText = GetDocumentText();
+            ActionUtils.ChangeLenguage(testText, realText);
+            SelectAllText();
+            ClickBackspace();
+        }
 
         public void DocumentTextFillIn(string text)
         {
@@ -133,7 +145,7 @@ namespace ImTiredProject.PageObjects
         public List<string> GetAllDocumentsText()
         {
             var result = new List<string>();
-
+            
             for (var i = 1; i < DocTabs.Count(); i++)
             {
                 var tab = DocTabs[i];

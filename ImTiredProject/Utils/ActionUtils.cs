@@ -15,18 +15,13 @@ namespace ImTiredProject.Utils
             Actions.Perform();
         }
 
-        public static void ChangeLenguage()
+        public static void ChangeLenguage(string waitingText, string realText)
         {
-            var mainPage = new MainPage();
-            mainPage.DocumentTextFillIn("q");
-            var text = mainPage.GetDocumentText();
-            if (text != "q")
+            if (waitingText != realText)
             {
                 Actions.SendKeys(Keys.LeftAlt + Keys.LeftShift + Keys.LeftAlt);
                 Actions.Perform();
             }
-            mainPage.SelectAllText();
-            mainPage.ClickBackspace();
         }
     }
 }
